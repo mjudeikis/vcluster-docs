@@ -1,13 +1,15 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 
+	"github.com/invopop/jsonschema"
 	clusterv1 "github.com/loft-sh/agentapi/v4/pkg/apis/loft/cluster/v1"
 	managementv1 "github.com/loft-sh/api/v4/pkg/apis/management/v1"
 	storagev1 "github.com/loft-sh/api/v4/pkg/apis/storage/v1"
-	extconfig "github.com/loft-sh/vcluster-docs/hack/platform/partials/extconfig"
 	"github.com/loft-sh/vcluster-docs/hack/platform/util"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -898,14 +900,23 @@ spec:
 	util.DefaultRequire = false
 
 	paths := []string{
-		"external/platform/apiKey",
+		// "external/platform/apiKey", // TODO: decide what to do with API Key, which is part of vcluster repo, not loft-enterprise
 		"external/platform/autoSleep",
 		"external/platform/autoDelete",
 		"external/platform",
 		"external",
 	}
-
+	schema := &jsonschema.Schema{}
+	schemaBytes, err := os.ReadFile("vcluster.schema.json")
+	if err != nil {
+		panic(err)
+	}
+	err = json.Unmarshal(schemaBytes, schema)
+	if err != nil {
+		panic(err)
+	}
 	for _, p := range paths {
-		util.GenerateFromPath(util.GenerateSchema(&extconfig.Config{}), util.BasePath+"/config", p, nil)
+		fmt.Printf("path: %s\n", p)
+		util.GenerateFromPath(schema, util.BasePath+"/config", p, nil)
 	}
 }

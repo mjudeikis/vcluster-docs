@@ -339,7 +339,6 @@ func GenerateFromPath(schema *jsonschema.Schema, basePath string, schemaPath str
 	lastProperty := schemaPath
 	for i, property := range splittedSchemaPath {
 		var ok bool
-
 		lastProperty = property
 		fieldSchema, ok = fieldSchema.Properties.Get(property)
 		if !ok {
