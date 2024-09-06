@@ -902,7 +902,7 @@ func main() {
 
 	util.DefaultRequire = false
 	schema := &jsonschema.Schema{}
-	schemaBytes, err := os.ReadFile("vcluster.schema.json")
+	schemaBytes, err := os.ReadFile("vendor/github.com/loft-sh/vcluster-config/vcluster.schema.json")
 	if err != nil {
 		panic(err)
 	}
@@ -913,7 +913,7 @@ func main() {
 	externalProperty, ok := schema.Properties.Get("external")
 
 	if !ok {
-		panic("external property not found in vcluster.schema.json")
+		panic("external property not found in vendor/github.com/loft-sh/vcluster-config/vcluster.schema.json")
 	}
 	walkTree(externalProperty, schema, "external", "")
 	fmt.Println(paths)
