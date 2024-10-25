@@ -1,5 +1,5 @@
 vCluster can sync certain resources from the host cluster to make them available inside the virtual cluster, but when these resources are 
-synced, they are only synced in read-only mode. No changes to the resource in the virtual cluster syncs back to the host cluster as the 
+synced, they are read-only. No changes to the resource in the virtual cluster syncs back to the host cluster as the 
 resources are shared across the host cluster.
 
 A good example would be nodes, which are nice to view inside the virtual cluster and can be also used to enabled certain features such as [scheduling inside the vCluster](/vcluster/configure/vcluster-yaml/control-plane/other/advanced/virtual-scheduler.mdx), 
