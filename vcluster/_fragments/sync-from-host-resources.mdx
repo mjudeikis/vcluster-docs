@@ -7,7 +7,7 @@ but you wouldn't want your virtual cluster to change the node itself. Another be
 
 vCluster also allows to sync custom resources via the [custom resource definitions syncer](../configure/vcluster-yaml/sync/from-host/custom-resources.mdx)
 
-There are a couple of labels that are created on the host cluster by vCluster that never get synced to the virtual cluster resource. These labels are: 
+Several labels are applied to the host cluster by vCluster that never get synced to the virtual cluster resource. These labels are: 
 
 * `release` (Label is needed to avoid conflicts with the vCluster pods themselves). This is only excluded in single-namespace mode as multi-namespace mode does sync all pods into separate namespaces.
 * `vcluster.loft.sh/namespace`
