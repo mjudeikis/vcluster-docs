@@ -11,7 +11,7 @@ the sync of the resources is based on what section the resource is part of in th
 are a few exceptions for each resource where specific fields are kept in sync in both directions (i.e. bi-directional sync). 
 
 If the resource is being asked to sync from the virtual cluster to the host cluster, vCluster copies the resources from the vCluster and sends it to the host cluster to be created. There are 
-a couple of additional labels added to the host cluster resource object for vCluster to keep it in sync. The syncer starts watching for changes to the resource on either side. When the resource
+additional labels added to the host cluster resource object for vCluster to keep it in sync. The syncer starts watching for changes to the resource on either side. When the resource
 is updated in the virtual cluster, the syncer copies those changes in host cluster. 
 
 When a resource is defined in the `toHost` section, as soon as that resource is created in the virtual cluster, vCluster copies it to the host cluster. 
